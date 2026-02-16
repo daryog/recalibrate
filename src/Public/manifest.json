@@ -1,0 +1,9 @@
+{
+  "name": "Recalibrate",
+  "short_name": "Recalibrate",
+  "start_url": "/recalibrate/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#0a0a0f",
+  "description": "Presence & awareness tracker"
+}
