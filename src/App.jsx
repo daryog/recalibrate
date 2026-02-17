@@ -67,7 +67,8 @@ const IMPULSES = [
   { key: "sexual", label: "Sexualized Thought", sub: "Caught it — logged it", color: "#c084fc" },
 ];
 
-const today = () => new Date().toISOString().split("T")[0];
+const localDateStr = (d = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+const today = () => localDateStr();
 const timeNow = () => new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 const emptyDay = () => ({
   impulses: { boredom: [], sexual: [] },
@@ -80,7 +81,7 @@ const getDateRange = (days) => {
   for (let i = days - 1; i >= 0; i--) {
     const dt = new Date();
     dt.setDate(dt.getDate() - i);
-    d.push(dt.toISOString().split("T")[0]);
+    d.push(localDateStr(dt));
   }
   return d;
 };
@@ -479,7 +480,7 @@ export default function App() {
     let streak = 0;
     const d = new Date();
     while (true) {
-      const k = d.toISOString().split("T")[0];
+      const k = localDateStr(d);
       if (!data?.days?.[k]) break;
       if (HABITS.filter((h) => getSafeDay(k).habits[h.key].length > 0).length >= 2) {
         streak++;
